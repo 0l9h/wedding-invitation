@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Весільне запрошення — 25 липня 2026</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ═══════════════  NAVIGATION  ═══════════════ -->
+  <nav class="nav" id="nav">
+    <ul class="nav__list" id="navList">
+      <li><a href="#hero">Запрошення</a></li>
+      <li><a href="#date">Дата</a></li>
+      <li><a href="#location">Локація</a></li>
+      <li><a href="#timeline">Таймінг</a></li>
+      <li><a href="#dresscode">Dress-code</a></li>
+      <li><a href="#countdown">Відлік</a></li>
+      <li><a href="#rsvp">RSVP</a></li>
+    </ul>
+    <button class="nav__burger" id="burger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ═══════════════  SECTION 1 — HERO  ═══════════════ -->
+  <section class="section hero" id="hero">
+    <div class="hero__photos anim">
+      <span class="hero__label hero__label--top">Впізнаєте</span>
+      <div class="hero__polaroids">
+        <div class="polaroid polaroid--left">
+          <img id="childPhoto1" alt="Дитяче фото 1" loading="lazy" />
+        </div>
+        <div class="polaroid polaroid--right">
+          <img id="childPhoto2" alt="Дитяче фото 2" loading="lazy" />
+        </div>
+      </div>
+      <span class="hero__label hero__label--bottom">цих двох?</span>
+    </div>
+
+    <div class="hero__card anim">
+      <p class="hero__card-title">Невдовзі вони скажуть одне одному "так"</p>
+      <p class="hero__card-sub">Будемо раді, аби ви розділили цей день з нами</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════  SECTION 2 — ENVELOPE  ═══════════════ -->
+  <section class="section envelope-section" id="envelope">
+    <div class="envelope-wrapper anim" id="envelopeWrapper">
+      <div class="envelope">
+        <div class="envelope__body">
+          <div class="envelope__stamp">
+            <span class="envelope__stamp-heart">&#9829;</span>
+            <span class="envelope__stamp-date">25.07.26</span>
+          </div>
+          <div class="envelope__lines">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+        <div class="letter" id="letter">
+          <p class="letter__heading">Дорогі гості</p>
+          <p class="letter__text">Ми дуже раді запросити Вас бути частиною цієї події</p>
+        </div>
+        <div class="envelope__flap"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════  SECTION 3 — DATE / CALENDAR  ═══════════════ -->
+  <section class="section date-section" id="date">
+    <div class="anim">
+      <h2 class="heading">Липень</h2>
+      <div class="calendar" id="calendar"></div>
+      <p class="calendar__year">2026</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════  SECTION 4 — LOCATION  ═══════════════ -->
+  <section class="section location-section" id="location">
+    <div class="anim">
+      <h2 class="heading heading--white">Локація</h2>
+      <p class="location__name">Ресторан "Скіфія"</p>
+      <div class="location__photo-wrap">
+        <img id="restaurantPhoto" alt="Ресторан Скіфія" loading="lazy" />
+      </div>
+      <a class="btn btn--white" id="mapBtn" target="_blank" rel="noopener">Переглянути на мапі</a>
+    </div>
+  </section>
+
+  <!-- ═══════════════  SECTION 5 — TIMELINE  ═══════════════ -->
+  <section class="section timeline-section" id="timeline">
+    <div class="anim">
+      <h2 class="heading">Таймінг</h2>
+      <div class="timeline" id="timelineContainer"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════  SECTION 6 — DRESS CODE  ═══════════════ -->
+  <section class="section dresscode-section" id="dresscode">
+    <div class="anim">
+      <h2 class="heading">Dress-code</h2>
+      <p class="dresscode__text">Ми будемо вдячні, якщо ви підтримаєте атмосферу свята та оберете ваші вбрання у таких кольорах</p>
+      <div class="dresscode__circles" id="dressCircles"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════  SECTION 7 — COUNTDOWN  ═══════════════ -->
+  <section class="section countdown-section" id="countdown">
+    <div class="anim">
+      <p class="countdown__heading">Чекаємо на вас через</p>
+      <div class="countdown" id="countdownTimer">
+        <div class="countdown__unit"><span id="cdDays">00</span><small>Дні</small></div>
+        <div class="countdown__unit"><span id="cdHours">00</span><small>Години</small></div>
+        <div class="countdown__unit"><span id="cdMinutes">00</span><small>Хвилини</small></div>
+        <div class="countdown__unit"><span id="cdSeconds">00</span><small>Секунди</small></div>
+      </div>
+      <p class="countdown__done" id="countdownDone" hidden>Цей день настав! 🎉</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════  SECTION 8 — RSVP  ═══════════════ -->
+  <section class="section rsvp-section" id="rsvp">
+    <div class="anim">
+      <h2 class="heading">Підтвердження присутності</h2>
+      <form class="rsvp-form" id="rsvpForm" novalidate>
+        <label class="rsvp-form__label">
+          Ім'я та прізвище
+          <input type="text" name="name" required placeholder="Ваше ім'я" />
+        </label>
+
+        <label class="rsvp-form__label">
+          Кількість гостей
+          <select name="guests" required>
+            <option value="" disabled selected>Оберіть</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </label>
+
+        <fieldset class="rsvp-form__fieldset">
+          <legend>Чи будете присутні?</legend>
+          <label><input type="radio" name="attending" value="yes" required /> Так, з радістю!</label>
+          <label><input type="radio" name="attending" value="no" /> На жаль, не зможу</label>
+        </fieldset>
+
+        <button type="submit" class="btn btn--olive">Надіслати</button>
+        <p class="rsvp-form__success" id="rsvpSuccess" hidden>Дякуємо! Ваша відповідь збережена.</p>
+        <p class="rsvp-form__error" id="rsvpError" hidden></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ═══════════════  MUSIC TOGGLE  ═══════════════ -->
+  <button class="music-toggle" id="musicToggle" aria-label="Увімкнути музику">🎵</button>
+  <audio id="bgMusic" loop preload="none"></audio>
+
+  <!-- Scripts -->
+  <script src="config.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500">
+  <rect width="400" height="500" fill="#d0d0d0"/>
+  <text x="200" y="230" text-anchor="middle" font-family="sans-serif" font-size="24" fill="#888">Child Photo 2</text>
+  <text x="200" y="270" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#aaa">Replace this file</text>
+</svg>

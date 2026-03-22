@@ -23,17 +23,29 @@ const CONFIG = {
 
   /* ── Timeline events (easy to extend) ────────────────────── */
   timeline: [
-    { event: 'Збір гостей', time: '13:00' },
-    { event: 'Церемонія',   time: '14:00' },
+    { event: 'Збір гостей', time: '13:00', icon: 'assets/guests-summon.png', iconScale: 1.25 },
+    { event: 'Церемонія',   time: '14:00', icon: 'assets/wedding-ceremony.png' },
   ],
 
-  /* ── Dress‑code colours ──────────────────────────────────── */
-  dressCodeColors: [
-    { name: 'Dark Brown',  hex: '#5C4033' },
-    { name: 'Light Brown', hex: '#C4A882' },
-    { name: 'Beige',       hex: '#F5F0E6' },
-    { name: 'Olive',       hex: '#808000' },
-    { name: 'Sage Green',  hex: '#9CAF88' },
-    { name: 'White',       hex: '#FFFFFF', border: true },
+  /* ── Dress‑code heart images (rows: brown, green, white) ── */
+  dressCodeHearts: [
+    // Row 1 — brown tones (dark → light)
+    [
+      { name: 'Dark Brown',  src: 'assets/dark-brown-heart.png' },
+      { name: 'Brown',       src: 'assets/brown-heart.png' },
+      { name: 'Light Brown', src: 'assets/light-brown-heart.png' },
+    ],
+    // Row 2 — green tones (dark → light)
+    [
+      { name: 'Dark Green',  src: 'assets/dark-green-heart.png' },
+      { name: 'Green',       src: 'assets/green-heart.png' },
+      { name: 'Light Green', src: 'assets/light-green-heart.png' },
+    ],
+    // Row 3 — white tones (darker → lighter)
+    [
+      { name: 'Beige',       src: 'assets/beige-heart.png' },
+      { name: 'Cream',       src: 'assets/cream-heart.png' },
+      { name: 'Snow White',  src: 'assets/snow-white-heart.png' },
+    ],
   ],
 };

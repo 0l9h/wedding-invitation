@@ -17,17 +17,34 @@
   const nav     = document.getElementById('nav');
   const burger  = document.getElementById('burger');
   const navList = document.getElementById('navList');
+  const mobileMenuFadeDuration = 250;
+
+  function openMenu() {
+    nav.classList.add('open');
+    burger.classList.add('open');
+    navList.classList.add('open');
+  }
+
+  function closeMenu() {
+    burger.classList.remove('open');
+    navList.classList.remove('open');
+    window.setTimeout(() => {
+      if (!navList.classList.contains('open')) nav.classList.remove('open');
+    }, mobileMenuFadeDuration);
+  }
 
   burger.addEventListener('click', () => {
-    burger.classList.toggle('open');
-    navList.classList.toggle('open');
+    if (navList.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
 
   // Close mobile menu on link click
   navList.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
-      burger.classList.remove('open');
-      navList.classList.remove('open');
+      closeMenu();
     });
   });
 
@@ -101,28 +118,39 @@
     CONFIG.timeline.forEach(item => {
       const row = document.createElement('div');
       row.className = 'timeline__item';
+
+      const scale = item.iconScale ? ` style="transform: scale(${item.iconScale})"` : '';
+      const dotHTML = item.icon
+        ? `<div class="timeline__dot timeline__dot--img"><img src="${item.icon}" alt="${item.event}"${scale} /></div>`
+        : `<div class="timeline__dot"></div>`;
+
       row.innerHTML = `
         <div class="timeline__event">${item.event}</div>
-        <div class="timeline__dot"></div>
+        ${dotHTML}
         <div class="timeline__time">${item.time}</div>
       `;
       container.appendChild(row);
     });
   }
 
-  /* ── 6. Dress-code circles (from CONFIG) ─────────────── */
+  /* ── 6. Dress-code hearts (from CONFIG) ────────────── */
   buildDressCode();
 
   function buildDressCode() {
     const container = document.getElementById('dressCircles');
-    CONFIG.dressCodeColors.forEach(c => {
-      const el = document.createElement('div');
-      el.className = 'dresscode__circle';
-      el.style.backgroundColor = c.hex;
-      if (c.border) el.style.border = '1px solid #ccc';
-      el.title = c.name;
-      el.setAttribute('aria-label', c.name);
-      container.appendChild(el);
+    CONFIG.dressCodeHearts.forEach(row => {
+      const rowEl = document.createElement('div');
+      rowEl.className = 'dresscode__row';
+      row.forEach(heart => {
+        const el = document.createElement('img');
+        el.className = 'dresscode__heart';
+        el.src = heart.src;
+        el.alt = heart.name;
+        el.title = heart.name;
+        el.setAttribute('aria-label', heart.name);
+        rowEl.appendChild(el);
+      });
+      container.appendChild(rowEl);
     });
   }
 
@@ -133,6 +161,22 @@
   const cdSeconds = document.getElementById('cdSeconds');
   const cdDone    = document.getElementById('countdownDone');
   const cdTimer   = document.getElementById('countdownTimer');
+
+  // Ukrainian plural forms: [nominative singular, nominative plural (2-4), genitive plural (5+)]
+  function ukPlural(n, forms) {
+    const abs = Math.abs(n);
+    const mod100 = abs % 100;
+    const mod10  = abs % 10;
+    if (mod100 >= 11 && mod100 <= 19) return forms[2];
+    if (mod10 === 1) return forms[0];
+    if (mod10 >= 2 && mod10 <= 4) return forms[1];
+    return forms[2];
+  }
+
+  const dayForms    = ['День', 'Дні', 'Днів'];
+  const hourForms   = ['Годину', 'Години', 'Годин'];
+  const minuteForms = ['Хвилину', 'Хвилини', 'Хвилин'];
+  const secondForms = ['Секунду', 'Секунди', 'Секунд'];
 
   function updateCountdown() {
     const now  = new Date();
@@ -153,6 +197,11 @@
     cdHours.textContent   = String(h).padStart(2, '0');
     cdMinutes.textContent = String(m).padStart(2, '0');
     cdSeconds.textContent = String(s).padStart(2, '0');
+
+    cdDays.parentElement.querySelector('small').textContent    = ukPlural(d, dayForms);
+    cdHours.parentElement.querySelector('small').textContent   = ukPlural(h, hourForms);
+    cdMinutes.parentElement.querySelector('small').textContent = ukPlural(m, minuteForms);
+    cdSeconds.parentElement.querySelector('small').textContent = ukPlural(s, secondForms);
   }
 
   updateCountdown();
@@ -162,15 +211,34 @@
   const musicBtn = document.getElementById('musicToggle');
   const audio    = document.getElementById('bgMusic');
 
+  function updateMusicButton(isPlaying) {
+    musicBtn.classList.toggle('playing', isPlaying);
+    musicBtn.classList.toggle('muted', !isPlaying);
+    musicBtn.textContent = isPlaying ? '🔊' : '🔇';
+    musicBtn.setAttribute('aria-label', isPlaying ? 'Музика увімкнена' : 'Музика вимкнена');
+    musicBtn.title = isPlaying ? 'Музика увімкнена' : 'Музика вимкнена';
+  }
+
+  async function tryPlayMusic() {
+    try {
+      await audio.play();
+    } catch {
+      updateMusicButton(false);
+    }
+  }
+
+  audio.addEventListener('play', () => updateMusicButton(true));
+  audio.addEventListener('pause', () => updateMusicButton(false));
+
   musicBtn.addEventListener('click', () => {
     if (audio.paused) {
-      audio.play().then(() => musicBtn.classList.add('playing'))
-                  .catch(() => {});
+      tryPlayMusic();
     } else {
       audio.pause();
-      musicBtn.classList.remove('playing');
     }
   });
+
+  updateMusicButton(false);
 
   /* ── 9. RSVP form ───────────────────────────────────── */
   const form       = document.getElementById('rsvpForm');
@@ -184,16 +252,15 @@
 
     // Client-side validation
     const name      = form.elements['name'].value.trim();
-    const guests    = form.elements['guests'].value;
     const attending = form.elements['attending'].value;
 
-    if (!name || !guests || !attending) {
+    if (!name || !attending) {
       errorMsg.textContent = 'Будь ласка, заповніть усі поля.';
       errorMsg.hidden = false;
       return;
     }
 
-    const data = { name, guests, attending };
+    const data = { name, attending };
 
     try {
       const res = await fetch(CONFIG.rsvpEndpoint, {

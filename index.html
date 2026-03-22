@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
     rel="stylesheet"
   />
 
@@ -49,7 +49,7 @@
     </div>
 
     <div class="hero__card anim">
-      <p class="hero__card-title">Невдовзі вони скажуть одне одному "так"</p>
+      <p class="hero__card-title">Невдовзі вони скажуть один одному "так"</p>
       <p class="hero__card-sub">Будемо раді, аби ви розділили цей день з нами</p>
     </div>
   </section>
@@ -88,12 +88,12 @@
   <!-- ═══════════════  SECTION 4 — LOCATION  ═══════════════ -->
   <section class="section location-section" id="location">
     <div class="anim">
-      <h2 class="heading heading--white">Локація</h2>
+      <h2 class="heading">Локація</h2>
       <p class="location__name">Ресторан "Скіфія"</p>
       <div class="location__photo-wrap">
         <img id="restaurantPhoto" alt="Ресторан Скіфія" loading="lazy" />
       </div>
-      <a class="btn btn--white" id="mapBtn" target="_blank" rel="noopener">Переглянути на мапі</a>
+      <a class="btn btn--olive" id="mapBtn" target="_blank" rel="noopener">Переглянути на мапі</a>
     </div>
   </section>
 
@@ -138,18 +138,6 @@
           <input type="text" name="name" required placeholder="Ваше ім'я" />
         </label>
 
-        <label class="rsvp-form__label">
-          Кількість гостей
-          <select name="guests" required>
-            <option value="" disabled selected>Оберіть</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </label>
-
         <fieldset class="rsvp-form__fieldset">
           <legend>Чи будете присутні?</legend>
           <label><input type="radio" name="attending" value="yes" required /> Так, з радістю!</label>
@@ -164,8 +152,8 @@
   </section>
 
   <!-- ═══════════════  MUSIC TOGGLE  ═══════════════ -->
-  <button class="music-toggle" id="musicToggle" aria-label="Увімкнути музику">🎵</button>
-  <audio id="bgMusic" loop preload="none"></audio>
+  <button class="music-toggle" id="musicToggle" aria-label="Музика увімкнена">🔊</button>
+  <audio id="bgMusic" loop preload="auto"></audio>
 
   <!-- Scripts -->
   <script src="config.js"></script>
